@@ -1,0 +1,30 @@
+networks:
+  backend:
+    external: true
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9443:9443
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      TZ: 'Europe/Amsterdam'
+      NETWORK_ACCESS: internal
+    restart: unless-stopped
+    networks:
+      - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.homelab.dzarpelon.com`)"
+      - "traefik.http.routers.portainer.entrypoints=websecure"
+      - "traefik.http.routers.portainer.tls=true"
+      - "traefik.http.routers.portainer.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.portainer.tls.domains[0].main=portainer.homelab.dzarpelon.com"
+      - "traefik.http.routers.portainer.tls.domains[0].sans=portainer.homelab.dzarpelon.com"
+      - "traefik.http.services.portainer.loadbalancer.server.port=80"
+      - "traefik.http.routers.portainer.service=portainer"
+volumes:
+  data:
