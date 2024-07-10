@@ -4,3 +4,4 @@ etc-dnsmasq.d/
 **/test/
 **/cf_api_token.txt
 homelab.code-workspace
+**/acme.json
