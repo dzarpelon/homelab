@@ -15,3 +15,6 @@ echo
 
 echo "== Kube Context =="
 kubectl config current-context
+
+echo "== Kind =="
+kind --version || echo "kind not found"
