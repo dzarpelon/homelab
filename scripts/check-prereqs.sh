@@ -9,14 +9,18 @@ need() {
 }
 
 need docker
-need kind
 need kubectl
+
+if command -v kind >/dev/null 2>&1; then
+  echo "Found optional command: kind"
+else
+  echo "Optional command not found: kind"
+fi
 
 if command -v helm >/dev/null 2>&1; then
   echo "Found optional command: helm"
 else
-  echo "Optional command not found yet: helm"
+  echo "Optional command not found: helm"
 fi
 
 echo "Prerequisites look good."
-

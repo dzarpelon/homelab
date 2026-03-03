@@ -3,14 +3,14 @@
 ## Current defaults
 
 - Local cluster runtime: Docker Desktop
-- Kubernetes substrate: kind
-- Cluster topology: 1 control-plane, 2 workers
-- Initial edge assumption: map host ports `80` and `443` to the control-plane node
+- Kubernetes substrate: Docker Desktop Kubernetes using the `kind` provisioner
+- Cluster topology target: 1 control-plane, 2 workers
+- Initial edge assumption: use Docker Desktop's local load balancer support
+  for `Service.type=LoadBalancer` instead of installing MetalLB
 
 ## Open questions
 
-- Whether Docker Desktop networking on this host reliably supports direct host access
-  to `80/443` for the kind node container
-- Whether later edge traffic should use direct port mappings, `kubectl port-forward`,
-  or a local load balancer helper
-
+- Whether Docker Desktop networking on this host reliably exposes `LoadBalancer`
+  services on the Mac without extra components
+- Whether later edge traffic should use native `LoadBalancer` services, specific
+  host aliases, or fallback tools like `kubectl port-forward`

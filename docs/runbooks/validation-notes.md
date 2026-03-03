@@ -12,12 +12,13 @@ Use this file as the running evidence log for Issue 1.
 
 ## Cluster validation
 
-- Cluster created successfully:
+- Active kube context:
+- Docker Desktop cluster detected:
 - Three nodes Ready:
+- `LoadBalancer` support observed:
 - Host ports `80/443` available:
 - Any Docker Desktop constraints observed:
 
 ## Follow-up items
 
 - 
-

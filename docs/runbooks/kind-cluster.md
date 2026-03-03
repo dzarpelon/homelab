@@ -1,8 +1,9 @@
-# kind Cluster Runbook
+# Docker Desktop kind Provisioner Runbook
 
 ## Goal
 
-Create and validate a reproducible 3-node kind cluster for the homelab.
+Validate the existing Docker Desktop Kubernetes cluster running with the
+`kind` provisioner.
 
 ## Prerequisites
 
@@ -13,7 +14,7 @@ make prereqs
 make ports
 ```
 
-## Create the cluster
+## Confirm the cluster context
 
 Run:
 
@@ -21,7 +22,11 @@ Run:
 make create
 ```
 
-This uses `infra/kind/kind-config.yaml`.
+This does not create a cluster. It verifies that:
+
+- Docker Desktop is reachable
+- the active kube context is `docker-desktop`
+- at least 3 nodes exist
 
 ## Validate the cluster
 
@@ -34,14 +39,10 @@ make verify
 Expected outcomes:
 
 - `kubectl cluster-info` returns control-plane endpoints
-- `kubectl get nodes` shows 3 Ready nodes
+- `kubectl get nodes` shows at least 3 Ready nodes
 - `kubectl get pods -A` returns without API errors
 
-## Tear down
+## Resetting the cluster
 
-Run:
-
-```bash
-make delete
-```
-
+Do not use this repo to destroy the Docker Desktop-managed cluster.
+If you intentionally need a reset, do it from Docker Desktop settings.

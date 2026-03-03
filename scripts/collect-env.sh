@@ -6,13 +6,12 @@ uname -a
 echo
 
 echo "== Docker =="
-docker version --format '{{.Client.Version}}'
-echo
-
-echo "== kind =="
-kind version
+docker version --format 'client={{.Client.Version}} server={{.Server.Version}}'
 echo
 
 echo "== kubectl =="
 kubectl version --client
+echo
 
+echo "== Kube Context =="
+kubectl config current-context
