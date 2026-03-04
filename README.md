@@ -32,3 +32,10 @@ reset it, do that intentionally from Docker Desktop itself.
 - `scripts/`: local validation helpers
 - `platform/`: reserved for platform components in later sprints
 - `apps/`: reserved for app onboarding in later sprints
+
+## DNS note
+
+For local wildcard DNS, this lab uses `lab.test` instead of `lab.local`.
+On this managed Mac, `dnscrypt-proxy` already owns `127.0.0.1:53`, so
+`dnsmasq` is configured to serve `lab.test` on `127.0.0.1:53535` and macOS
+uses a scoped resolver in `/etc/resolver/lab.test`.
