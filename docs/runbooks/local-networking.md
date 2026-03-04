@@ -25,3 +25,9 @@ kubectl get svc -A
 - Whether browser and `curl` traffic can reach workloads through `LoadBalancer`
   services later
 - Any Docker Desktop limitations or workarounds needed on this host
+
+## DNS interaction
+
+- This host already runs `dnscrypt-proxy` on `127.0.0.1:53`
+- Local wildcard lab DNS therefore runs through `dnsmasq` on `127.0.0.1:53535`
+- macOS should scope `*.lab.test` to `/etc/resolver/lab.test`
