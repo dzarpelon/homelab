@@ -1,0 +1,22 @@
+# platform/consul/api-gateway/routes/hello-web-route.yaml
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: hello-web-route
+  namespace: consul
+spec:
+  hostnames:
+    - hello.lab.test
+  parentRefs:
+    - name: lab-api-gateway
+      sectionName: http
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - kind: Service
+          name: hello-web
+          namespace: gitops-lab
+          port: 80

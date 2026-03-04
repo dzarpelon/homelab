@@ -1,0 +1,13 @@
+# apps/hello-web/intentions.yaml
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceIntentions
+metadata:
+  name: lab-api-gateway-to-hello-web
+  namespace: gitops-lab
+spec:
+  destination:
+    name: hello-web
+  sources:
+    - name: lab-api-gateway
+      namespace: default
+      action: allow
